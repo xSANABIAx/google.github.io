@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenido</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bienvenido</h1>
+        <p>Hola, <span id="userDisplayName"></span>!</p>
+        <p>¡Has iniciado sesión con éxito!</p>
+        <a href="index.html" class="btn btn-danger">Cerrar Sesión</a>
+    </div>
+
+    <script>
+        // Obtén la información del usuario
+        var user = firebase.auth().currentUser;
+        if (user != null) {
+            document.getElementById("userDisplayName").innerText = user.displayName;
+        }
+    </script>
+</body>
+</html>

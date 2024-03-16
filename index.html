@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión con Google</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Iniciar Sesión con Google</h1>
+        <button onclick="signInWithGoogle()" class="btn btn-primary">Iniciar Sesión con Google</button>
+    </div>
+
+    <script>
+        function signInWithGoogle() {
+            // Configura las opciones de autenticación de Google
+            var googleAuth = new firebase.auth.GoogleAuthProvider();
+
+            // Inicia sesión con Google
+            firebase.auth().signInWithPopup(googleAuth)
+                .then(function(result) {
+                    // El usuario ha iniciado sesión con éxito
+                    var user = result.user;
+                    window.location.href = "welcome.html";
+                })
+                .catch(function(error) {
+                    // Maneja los errores de inicio de sesión
+                    console.error(error);
+                });
+        }
+    </script>
+    
+    <!-- Agrega la biblioteca Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-analytics.js"></script>
+    <script>
+        // Configura tu aplicación Firebase
+        var firebaseConfig = {
+            apiKey: "TU_API_KEY",
+            authDomain: "TU_DOMINIO.firebaseapp.com",
+            projectId: "TU_PROYECTO_ID",
+            storageBucket: "TU_STORAGE_BUCKET.appspot.com",
+            messagingSenderId: "TU_MESSAGING_SENDER_ID",
+            appId: "TU_APP_ID",
+            measurementId: "TU_MEASUREMENT_ID"
+        };
+        // Inicializa Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+    </script>
+</body>
+</html>
